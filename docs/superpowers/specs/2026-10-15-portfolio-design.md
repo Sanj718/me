@@ -10,7 +10,8 @@ Sanjar Sobirjonov (Shopify / JS developer, Ottawa, works at Polaris). Deployed t
   (`https://cdn.shopify.com/shopifycloud/polaris-2.0-rc.js`). No App Bridge, no API key meta tag
   (verified standalone in a probe).
 - Stay within Polaris components and tokens; no decorative custom art, no shader hero.
-- Plain static files, no framework, no build step. Must work on GitHub Pages.
+- Plain static files, no framework, no build step. Must work on GitHub Pages and when opened
+  directly from disk (`file://`): classic `<script>` tags only, no ES modules, no fetch of local files.
 - Polaris script URL lives in one place so moving to stable `polaris-2.js` is a one-line change.
 
 ## Concept: "portfolio as a Polaris app"
@@ -48,7 +49,7 @@ before deploy. All content lives in the data arrays in `app.js` so edits are tri
 - Filter/modal logic degrades gracefully: with JS off, all projects are visible as links.
 
 ## Testing
-- Manual: serve locally, check light/dark, mobile width (~375px), filter, search, modal open/close
+- Manual: open `index.html` directly in the browser (`file://`, no local server), check light/dark, mobile width (~375px), filter, search, modal open/close
   with keyboard, no console errors.
 - Verify links and the CNAME file before deploy.
 
