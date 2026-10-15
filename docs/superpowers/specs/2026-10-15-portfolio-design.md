@@ -31,7 +31,7 @@ composition and interaction, not decoration.
 ## Files
 ```
 index.html   # markup + Polaris script tag
-app.js       # project/experience data arrays at top; filter + modal logic
+app.js       # filter, search and theme-toggle logic only (content lives in index.html)
 style.css    # minimal overrides only (page background, column width)
 CNAME        # sanjar.dev
 .nojekyll
@@ -41,7 +41,7 @@ CNAME        # sanjar.dev
 Drafted from GitHub (bio "Shopify / JS", Ottawa; repos incl. Shopify-MinicartJS,
 functions-hub, section-conditions, minica, xapps, avex-next). LinkedIn has not been provided,
 so the experience table is drafted from public GitHub data and **must be reviewed by the owner**
-before deploy. All content lives in the data arrays in `app.js` so edits are trivial.
+before deploy. All content lives as plain markup in `index.html` so it works without JS.
 
 ## Error handling / degraded modes
 - If the Polaris script fails to load, the page remains readable as plain semantic HTML

@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+s-clickable[hidden] { display: none; }
+s-clickable[data-active], s-clickable-chip[data-active] { font-weight: 600; }

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sanjar Sobirjonov — Developer</title>
+  <meta name="description" content="Sanjar Sobirjonov, Shopify / JS developer in Ottawa, Canada.">
+  <link rel="stylesheet" href="style.css">
+  <!-- Single place the Polaris version is set. Swap for polaris-2.js when 2.0 is stable. -->
+  <script src="https://cdn.shopify.com/shopifycloud/polaris-2.0-rc.js"></script>
+</head>
+<body>
+<main>
+  <s-stack gap="large">
+
+    <s-stack direction="inline" gap="base" alignItems="center" justifyContent="space-between">
+      <s-stack direction="inline" gap="base" alignItems="center">
+        <s-avatar initials="SS" size="large" alt="Sanjar Sobirjonov"></s-avatar>
+        <s-stack gap="small-300">
+          <s-heading>Sanjar Sobirjonov</s-heading>
+          <s-text color="subdued">Shopify / JS developer</s-text>
+        </s-stack>
+      </s-stack>
+      <s-switch id="theme-toggle" label="Dark mode"></s-switch>
+    </s-stack>
+
+    <s-stack direction="inline" gap="small">
+      <s-badge>Ottawa, Canada</s-badge>
+      <s-badge tone="success">Working at Polaris</s-badge>
+    </s-stack>
+
+    <s-banner heading="Currently building on Shopify" tone="info">
+      <!-- REVIEW: replace with what you want to say right now -->
+      Shopify apps, Functions and storefront tooling in TypeScript and JavaScript.
+    </s-banner>
+
+    <s-stack direction="inline" gap="small">
+      <s-button href="#projects">Projects</s-button>
+      <s-button href="#experience">Experience</s-button>
+      <s-button href="#contact" variant="primary">Contact</s-button>
+    </s-stack>
+
+    <s-section id="projects" heading="Projects">
+      <s-stack gap="base">
+
+        <s-search-field id="project-search" label="Search projects" labelAccessibilityVisibility="exclusive" placeholder="Search projects"></s-search-field>
+
+        <div id="tag-filters">
+          <s-stack direction="inline" gap="small">
+            <s-clickable-chip data-tag="all" data-active accessibilityLabel="Show all projects">All</s-clickable-chip>
+            <s-clickable-chip data-tag="shopify" accessibilityLabel="Filter: Shopify">Shopify</s-clickable-chip>
+            <s-clickable-chip data-tag="js" accessibilityLabel="Filter: JavaScript">JavaScript</s-clickable-chip>
+            <s-clickable-chip data-tag="typescript" accessibilityLabel="Filter: TypeScript">TypeScript</s-clickable-chip>
+            <s-clickable-chip data-tag="liquid" accessibilityLabel="Filter: Liquid">Liquid</s-clickable-chip>
+          </s-stack>
+        </div>
+
+        <s-banner id="no-results" tone="warning" hidden>No projects match. Try clearing the search or filter.</s-banner>
+
+        <!-- REVIEW: descriptions use only what GitHub states; please edit -->
+        <s-grid gridTemplateColumns="repeat(auto-fill, minmax(260px, 1fr))" gap="base">
+          <s-clickable class="project" data-tags="shopify js" data-title="shopify minicart js" commandFor="modal-minicart" command="--show" accessibilityLabel="Open Shopify MiniCart JS details">
+            <s-box padding="base" border="base" borderRadius="base">
+              <s-stack gap="small">
+                <s-heading>Shopify MiniCart JS</s-heading>
+                <s-text>Shorthand code for fast Shopify mini cart integration, with a customizable slider.</s-text>
+                <s-stack direction="inline" gap="small"><s-badge>JavaScript</s-badge><s-badge>Shopify</s-badge></s-stack>
+              </s-stack>
+            </s-box>
+          </s-clickable>
+          <s-clickable class="project" data-tags="shopify typescript" data-title="section conditions" commandFor="modal-section-conditions" command="--show" accessibilityLabel="Open Section Conditions details">
+            <s-box padding="base" border="base" borderRadius="base">
+              <s-stack gap="small">
+                <s-heading>Section Conditions</s-heading>
+                <s-text>Shopify project written in TypeScript.</s-text>
+                <s-stack direction="inline" gap="small"><s-badge>TypeScript</s-badge><s-badge>Shopify</s-badge></s-stack>
+              </s-stack>
+            </s-box>
+          </s-clickable>
+          <s-clickable class="project" data-tags="shopify liquid" data-title="minica" commandFor="modal-minica" command="--show" accessibilityLabel="Open Minica details">
+            <s-box padding="base" border="base" borderRadius="base">
+              <s-stack gap="small">
+                <s-heading>Minica</s-heading>
+                <s-text>Liquid-based Shopify project.</s-text>
+                <s-stack direction="inline" gap="small"><s-badge>Liquid</s-badge><s-badge>Shopify</s-badge></s-stack>
+              </s-stack>
+            </s-box>
+          </s-clickable>
+          <s-clickable class="project" data-tags="shopify js" data-title="functions hub" commandFor="modal-functions-hub" command="--show" accessibilityLabel="Open Functions Hub details">
+            <s-box padding="base" border="base" borderRadius="base">
+              <s-stack gap="small">
+                <s-heading>Functions Hub</s-heading>
+                <s-text>Shopify Functions collection.</s-text>
+                <s-stack direction="inline" gap="small"><s-badge>Shopify</s-badge></s-stack>
+              </s-stack>
+            </s-box>
+          </s-clickable>
+          <s-clickable class="project" data-tags="js" data-title="avex next" commandFor="modal-avex" command="--show" accessibilityLabel="Open Avex Next details">
+            <s-box padding="base" border="base" borderRadius="base">
+              <s-stack gap="small">
+                <s-heading>Avex Next</s-heading>
+                <s-text>Built with Next.js and Contentful, hosted on Netlify.</s-text>
+                <s-stack direction="inline" gap="small"><s-badge>JavaScript</s-badge></s-stack>
+              </s-stack>
+            </s-box>
+          </s-clickable>
+        </s-grid>
+      </s-stack>
+    </s-section>
+
+    <s-modal id="modal-minicart" heading="Shopify MiniCart JS">
+      <s-paragraph>Shorthand code for fast Shopify mini cart integration. Provides a slider mini cart that is fully customizable.</s-paragraph>
+      <s-button slot="secondary-actions" commandFor="modal-minicart" command="--hide">Close</s-button>
+      <s-button slot="primary-action" variant="primary" href="https://github.com/Sanj718/Shopify-MinicartJS" target="_blank">View on GitHub</s-button>
+    </s-modal>
+    <s-modal id="modal-section-conditions" heading="Section Conditions">
+      <s-paragraph>Shopify project written in TypeScript.</s-paragraph>
+      <s-button slot="secondary-actions" commandFor="modal-section-conditions" command="--hide">Close</s-button>
+      <s-button slot="primary-action" variant="primary" href="https://github.com/Sanj718/section-conditions" target="_blank">View on GitHub</s-button>
+    </s-modal>
+    <s-modal id="modal-minica" heading="Minica">
+      <s-paragraph>Liquid-based Shopify project.</s-paragraph>
+      <s-button slot="secondary-actions" commandFor="modal-minica" command="--hide">Close</s-button>
+      <s-button slot="primary-action" variant="primary" href="https://github.com/Sanj718/minica" target="_blank">View on GitHub</s-button>
+    </s-modal>
+    <s-modal id="modal-functions-hub" heading="Functions Hub">
+      <s-paragraph>Shopify Functions collection.</s-paragraph>
+      <s-button slot="secondary-actions" commandFor="modal-functions-hub" command="--hide">Close</s-button>
+      <s-button slot="primary-action" variant="primary" href="https://github.com/Sanj718/functions-hub" target="_blank">View on GitHub</s-button>
+    </s-modal>
+    <s-modal id="modal-avex" heading="Avex Next">
+      <s-paragraph>Built with Next.js and Contentful, hosted on Netlify.</s-paragraph>
+      <s-button slot="secondary-actions" commandFor="modal-avex" command="--hide">Close</s-button>
+      <s-button slot="primary-action" variant="primary" href="https://github.com/Sanj718/avex-next" target="_blank">View on GitHub</s-button>
+    </s-modal>
+
+    <s-section id="experience" heading="Experience">
+      <!-- REVIEW: only the role you stated is listed. Add roles/dates/stack from LinkedIn. -->
+      <s-table>
+        <s-table-header-row>
+          <s-table-header>Role</s-table-header>
+          <s-table-header>Company</s-table-header>
+          <s-table-header>Years</s-table-header>
+          <s-table-header>Stack</s-table-header>
+        </s-table-header-row>
+        <s-table-body>
+          <s-table-row>
+            <s-table-cell>Developer</s-table-cell>
+            <s-table-cell>Polaris, Shopify</s-table-cell>
+            <s-table-cell>Present</s-table-cell>
+            <s-table-cell>JavaScript, TypeScript, Web Components</s-table-cell>
+          </s-table-row>
+        </s-table-body>
+      </s-table>
+    </s-section>
+
+    <s-section id="contact" heading="Contact">
+      <s-stack direction="inline" gap="small">
+        <s-button href="https://github.com/Sanj718" target="_blank">GitHub</s-button>
+        <s-button href="https://twitter.com/sanj_sv" target="_blank">X / Twitter</s-button>
+        <!-- REVIEW: add LinkedIn URL here once provided -->
+        <s-button href="mailto:ssobirjonov@gmail.com" variant="primary">Email</s-button>
+      </s-stack>
+    </s-section>
+
+    <s-text color="subdued">© 2026 Sanjar Sobirjonov · <s-link href="https://github.com/Sanj718/me" target="_blank">Source</s-link></s-text>
+
+  </s-stack>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
