@@ -9,3 +9,6 @@ main {
 }
 s-clickable[hidden] { display: none; }
 s-clickable[data-active], s-clickable-chip[data-active] { font-weight: 600; }
+.project { display: block; align-self: stretch; }
+.project > s-box { display: block; height: 100%; box-sizing: border-box; }
+.table-scroll { overflow-x: auto; }
