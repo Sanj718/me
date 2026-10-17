@@ -16,7 +16,7 @@ const COMMANDS: Record<string, () => string[]> = {
     'think             a fresh thought on frontend',
     'clear             wipe the screen',
   ],
-  whoami: () => ['sanjar: senior engineer, Shopify Polaris team.', 'design systems by day, agentic workflows by night.'],
+  whoami: () => ['sanjar: engineer, Shopify Polaris team.', 'design systems by day, agentic workflows by night.'],
   'agent.status': () => ['{ state: "active", task: "wrangling design tokens", model: "local", review: "pending your taste" }'],
   'polaris.tokens': () => [
     '// illustrative, not the real thing',

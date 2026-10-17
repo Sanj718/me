@@ -1,6 +1,6 @@
 export const site = {
   name: 'Sanjar Sobirjonov',
-  role: 'Senior Engineer · Shopify Polaris',
+  role: 'Engineer · Shopify Polaris',
   location: 'Ottawa, Canada',
   avatar: 'https://github.com/Sanj718.png?size=160',
   links: {
