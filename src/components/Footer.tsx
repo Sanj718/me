@@ -20,7 +20,7 @@ export function Footer() {
         <span className="pulse h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden />
         Active: wrangling design tokens &amp; local agentic workflows
       </p>
-      <p className="mt-3 text-xs text-mute/70">© {new Date().getFullYear()} {site.name}</p>
+      <p className="mt-3 text-xs text-mute">© {new Date().getFullYear()} {site.name}</p>
     </footer>
   )
 }

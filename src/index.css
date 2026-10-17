@@ -99,3 +99,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .aurora, .aurora path, .sun { animation: none; }
 }
+
+/* Tailwind v4 leaves buttons with the default cursor. */
+button:not(:disabled):not([aria-disabled="true"]) { cursor: pointer; }

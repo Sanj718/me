@@ -6,7 +6,7 @@ export const site = {
   links: {
     github: 'https://github.com/Sanj718',
     x: 'https://x.com/sobsanjar',
-    email: 'mailto:ssobirjonov@gmail.com',
+    email: 'mailto:sobsanjar@gmail.com',
     linkedin: 'https://www.linkedin.com/in/sanjarsob/',
   },
 }

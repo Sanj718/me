@@ -12,24 +12,25 @@ function CompanyRow({ c }: { c: Company }) {
   const first = c.positions[c.positions.length - 1]
   return (
     <div className="flex items-center gap-4 rounded-lg p-3 transition hover:bg-panel">
-      <Logo kind={c.logo} name={c.name} />
+      <Logo kind={c.logo} />
       <div className="min-w-0 flex-1">
-        <h3 className="truncate font-medium">{c.name}</h3>
+        <h3 className="sm:truncate font-medium">{c.name}</h3>
         {c.positions.length === 1 ? (
-          <p className="truncate text-sm text-mute">{latest.title}</p>
+          <p className="sm:truncate text-sm text-mute">{latest.title}</p>
         ) : (
           // Latest role on top, the one before it underneath, joined by a small timeline.
-          <ol className="relative">
-            {/* Line runs from the first dot's center (10px) to the second's (8px from bottom). */}
-            <span className="absolute bottom-[8px] left-[2.5px] top-[10px] w-px bg-line" />
+          <ol>
             {c.positions.slice(0, 2).map((p, i) => (
               <li key={p.title} className="relative pl-4">
                 <span
+                  aria-hidden
                   className={`absolute left-0 h-1.5 w-1.5 rounded-full ${
                     i === 0 ? `top-[7px] ${p.end ? 'bg-mute' : 'bg-accent'}` : 'top-[5px] bg-mute/50'
                   }`}
                 />
-                <p className={i === 0 ? 'truncate text-sm leading-5 text-mute' : 'truncate text-xs leading-4 text-mute/70'}>{p.title}</p>
+                {/* From this dot's center (10px) down to the next dot's center (8px into the next row). */}
+                {i === 0 && <span aria-hidden className="absolute -bottom-[8px] left-[2.5px] top-[10px] w-px bg-line" />}
+                <p className={i === 0 ? 'sm:truncate text-sm leading-5 text-mute' : 'sm:truncate text-xs leading-4 text-mute'}>{p.title}</p>
               </li>
             ))}
           </ol>

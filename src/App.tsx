@@ -12,7 +12,7 @@ export default function App() {
     <>
       <ThemeToggle />
       <Scenery />
-      <main className="mx-auto max-w-2xl px-5 py-20 sm:py-28">
+      <main className="mx-auto max-w-2xl px-5 pb-20 pt-10 sm:pb-28 sm:pt-16">
         <Intro />
         <Experience />
         <Projects />

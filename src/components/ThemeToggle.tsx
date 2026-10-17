@@ -4,7 +4,7 @@ type Theme = 'dark' | 'light'
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>(() =>
-    document.documentElement.dataset.theme === 'light' ? 'light' : 'dark',
+    typeof document !== 'undefined' && document.documentElement.dataset.theme === 'light' ? 'light' : 'dark',
   )
 
   const toggle = () => {
