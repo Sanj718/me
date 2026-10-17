@@ -21,6 +21,13 @@ export function Intro() {
         <div>
           <h1 className="text-lg font-semibold tracking-tight">{site.name}</h1>
           <p className="text-sm text-mute">{site.role}</p>
+          <p className="mt-0.5 flex items-center gap-1 text-sm text-mute">
+            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z" />
+              <circle cx="12" cy="9.5" r="2.5" />
+            </svg>
+            {site.location}
+          </p>
         </div>
       </div>
       <div className="mt-8 space-y-4 text-[17px] leading-relaxed text-fg/85">
