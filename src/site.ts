@@ -48,7 +48,7 @@ export const experience: Company[] = [
     logo: 'avex',
     type: 'Full-time',
     positions: [
-      { title: 'Head of Development Department', start: '2022-01', end: '2024-10', location: 'New York, United States' },
+      { title: 'Head of Development', start: '2022-01', end: '2024-10', location: 'New York, United States' },
       {
         title: 'Senior Frontend/Shopify Developer',
         start: '2019-12',
