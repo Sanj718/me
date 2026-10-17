@@ -1,9 +1,20 @@
-import { useState, type ReactNode } from 'react'
-import { Heart, LayoutGrid, Mountain, Sparkles, Terminal, TreePine, Users, type LucideIcon } from 'lucide-react'
+import { useState, type ComponentType, type ReactNode } from 'react'
+import { Heart, Mountain, Sparkles, Terminal, TreePine, Users } from 'lucide-react'
 import { site } from '../site'
 
+type IconType = ComponentType<{ className?: string; strokeWidth?: number; 'aria-hidden'?: boolean }>
+
+// The Polaris star, from Shopify/polaris (polaris.shopify.com/src/components/WebComponentBanner/polaris-star.svg).
+function PolarisStar({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 120 120" aria-hidden className={className} fill="currentColor">
+      <path d="M71.57 38.61c.86 5.03 4.8 8.96 9.82 9.82l33.68 5.73c2.85.49 4.93 2.95 4.93 5.84s-2.08 5.35-4.93 5.84l-33.68 5.73c-5.02.86-8.96 4.8-9.82 9.82l-5.73 33.68c-.49 2.85-2.95 4.93-5.84 4.93s-5.35-2.08-5.84-4.93l-5.73-33.68c-.86-5.02-4.8-8.96-9.82-9.82L4.93 65.84C2.08 65.35 0 62.89 0 60s2.08-5.35 4.93-5.84l33.68-5.73c5.03-.86 8.96-4.8 9.82-9.82l5.73-33.68C54.65 2.08 57.11 0 60 0s5.35 2.08 5.84 4.93l5.73 33.68Z" />
+    </svg>
+  )
+}
+
 // A word with a small inline icon in front of it.
-function I({ icon: Icon, children, accent }: { icon: LucideIcon; children: ReactNode; accent?: boolean }) {
+function I({ icon: Icon, children, accent }: { icon: IconType; children: ReactNode; accent?: boolean }) {
   return (
     <span className="whitespace-nowrap">
       <Icon aria-hidden strokeWidth={2} className={`mr-1 inline-block h-[1em] w-[1em] align-[-0.125em] ${accent ? 'text-accent' : 'text-mute'}`} />
@@ -44,7 +55,7 @@ export function Intro() {
       <div className="mt-8 space-y-4 text-[17px] leading-relaxed text-fg/85">
         <p>
           Hi, I’m Sanjar. I’m an engineer on Shopify’s{' '}
-          <I icon={LayoutGrid}>
+          <I icon={PolarisStar}>
             <span className="text-fg">Polaris</span>
           </I>{' '}
           team, working on the design system that Shopify’s UI is built from.
