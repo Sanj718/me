@@ -16,6 +16,7 @@ function CompanyRow({ c }: { c: Company }) {
       <div className="min-w-0 flex-1">
         <h3 className="truncate font-medium">{c.name}</h3>
         <p className="truncate text-sm text-mute">{latest.title}</p>
+        {c.positions[1] && <p className="truncate text-xs text-mute/70">Previously {c.positions[1].title}</p>}
       </div>
       <div className="shrink-0 text-right font-mono text-xs text-mute">
         <p>
