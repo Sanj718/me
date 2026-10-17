@@ -6,7 +6,7 @@ const files = import.meta.glob<string>('../assets/logos/*.{jpg,png,svg}', { eage
 const real = (kind: string) => Object.entries(files).find(([path]) => path.includes(`/${kind}.`))?.[1]
 
 export function Logo({ kind, name }: { kind: Company['logo']; name: string }) {
-  const box = 'h-12 w-12 shrink-0 rounded-md'
+  const box = 'h-10 w-10 shrink-0 rounded-md'
   const src = real(kind)
   if (src) return <img src={src} alt={name} width={48} height={48} className={`${box} border border-line object-cover`} />
   switch (kind) {
