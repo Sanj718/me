@@ -30,7 +30,7 @@ export function Experience() {
   return (
     <Section id="experience" title="Experience">
       <ol className="-mx-3 space-y-1">
-        {experience.map((c) => (
+        {experience.filter((c) => !c.hidden).map((c) => (
           <li key={c.name}>
             <CompanyRow c={c} />
           </li>

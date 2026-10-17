@@ -25,6 +25,7 @@ export type Company = {
   logo: 'shopify' | 'avex' | 'sab' | 'bigd'
   type: string
   location?: string
+  hidden?: boolean // kept in data, not shown on the site
   positions: Position[] // newest first
 }
 
@@ -64,6 +65,7 @@ export const experience: Company[] = [
   },
   {
     name: 'SAB Games',
+    hidden: true,
     logo: 'sab',
     type: 'Full-time',
     positions: [
@@ -83,6 +85,7 @@ export const experience: Company[] = [
   },
   {
     name: 'Big D Creative',
+    hidden: true,
     logo: 'bigd',
     type: 'Full-time',
     positions: [
