@@ -38,7 +38,7 @@ export function Intro() {
         </p>
         <p>
           Lately I’m deep into <span className="text-accent">agentic development</span>: local models, CLI tooling, and
-          letting agents take the first draft so I can spend my time on the details. Based in {site.location}.
+          letting agents take the first draft so I can spend my time on the details.
         </p>
       </div>
     </header>
