@@ -17,8 +17,7 @@ function pine(x: number, base: number, h: number) {
     const hw = h * 0.16 * (1 + i * 0.55)
     d += `M${x} ${ay}L${x - hw} ${by}L${x + hw} ${by}Z`
   }
-  const tw = Math.max(1, h * 0.018)
-  return d + `M${x - tw} ${base - h * 0.12}h${tw * 2}V${base}h${-tw * 2}Z`
+  return d
 }
 
 type Pt = [number, number]
@@ -86,11 +85,27 @@ export function Scenery() {
       style={gutter}
     >
       <svg viewBox="0 380 600 520" preserveAspectRatio="xMaxYMax slice" className="h-full w-full">
-        <path d={ridge(FAR)} className="fill-fg" opacity="0.025" />
-        <path d={caps(FAR, [3, 5, 7, 9])} className="fill-fg" opacity="0.035" />
-        <path d={ridge(MID)} className="fill-fg" opacity="0.035" />
-        <path d={backPines.map((p) => pine(p.x, 694, p.h)).join('') + 'M0 690H600V900H0Z'} className="fill-fg" opacity="0.045" />
-        <path d={frontPines.map((p) => pine(p.x, 905, p.h)).join('')} className="fill-fg" opacity="0.055" />
+        {/* Opacity is set per layer (group), so overlapping shapes never double up or leave seams. */}
+        <g className="fill-fg" opacity="0.025">
+          <path d={ridge(FAR)} />
+        </g>
+        <g className="fill-fg" opacity="0.035">
+          <path d={caps(FAR, [3, 5, 7, 9])} />
+        </g>
+        <g className="fill-fg" opacity="0.035">
+          <path d={ridge(MID)} />
+        </g>
+        <g className="fill-fg" opacity="0.045">
+          {backPines.map((p, i) => (
+            <path key={i} d={pine(p.x, 696, p.h)} />
+          ))}
+          <rect x="0" y="690" width="600" height="210" />
+        </g>
+        <g className="fill-fg" opacity="0.055">
+          {frontPines.map((p, i) => (
+            <path key={i} d={pine(p.x, 930, p.h)} />
+          ))}
+        </g>
       </svg>
       </div>
     </>
