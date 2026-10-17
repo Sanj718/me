@@ -19,7 +19,7 @@ export function Intro() {
           <div className="grid h-14 w-14 place-items-center rounded-full border border-line bg-panel font-mono text-sm">SS</div>
         )}
         <div>
-          <h1 className="text-lg font-semibold tracking-tight">{site.name}</h1>
+          <h1 className="text-lg font-semibold tracking-tight">{site.shortName}</h1>
           <p className="text-sm text-mute">{site.role}</p>
           <p className="mt-0.5 flex items-center gap-1 text-sm text-mute">
             <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
