@@ -1,5 +1,16 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
+import { Heart, LayoutGrid, Mountain, Sparkles, Terminal, TreePine, Users, type LucideIcon } from 'lucide-react'
 import { site } from '../site'
+
+// A word with a small inline icon in front of it.
+function I({ icon: Icon, children, accent }: { icon: LucideIcon; children: ReactNode; accent?: boolean }) {
+  return (
+    <span className="whitespace-nowrap">
+      <Icon aria-hidden strokeWidth={2} className={`mr-1 inline-block h-[1em] w-[1em] align-[-0.125em] ${accent ? 'text-accent' : 'text-mute'}`} />
+      {children}
+    </span>
+  )
+}
 
 export function Intro() {
   const [avatarOk, setAvatarOk] = useState(true)
@@ -32,16 +43,24 @@ export function Intro() {
       </div>
       <div className="mt-8 space-y-4 text-[17px] leading-relaxed text-fg/85">
         <p>
-          Hi, I’m Sanjar. I’m an engineer on Shopify’s <span className="text-fg">Polaris</span> team, working on the
-          design system that Shopify’s UI is built from.
+          Hi, I’m Sanjar. I’m an engineer on Shopify’s{' '}
+          <I icon={LayoutGrid}>
+            <span className="text-fg">Polaris</span>
+          </I>{' '}
+          team, working on the design system that Shopify’s UI is built from.
         </p>
         <p>
-          Lately I’m deep into <span className="text-accent">agentic development</span>: local models, CLI tooling, and
-          letting agents take the first draft so I can spend my time on the details.
+          Lately I’m deep into{' '}
+          <I icon={Sparkles} accent>
+            <span className="text-accent">agentic development</span>
+          </I>
+          : local models, <I icon={Terminal}>CLI tooling</I>, and letting agents take the first draft so I can spend my
+          time on the details.
         </p>
         <p>
-          Away from the keyboard I’m a husband and a dad, and my favorite time is time with my family. I’m happiest
-          outdoors: hiking, forests, anywhere with trees and fresh air.
+          Away from the keyboard I’m a husband and a dad, and my favorite time is <I icon={Users}>time with my family</I>.
+          I’m happiest outdoors: <I icon={Mountain}>hiking</I>, <I icon={TreePine}>forests</I>, anywhere with trees and
+          fresh air <Heart aria-hidden className="inline-block h-[0.9em] w-[0.9em] align-[-0.1em] text-mute" />
         </p>
       </div>
     </header>
