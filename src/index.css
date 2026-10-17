@@ -114,7 +114,7 @@ body {
   transition: width var(--ease), height var(--ease), border-radius var(--ease), box-shadow var(--ease);
 }
 .avatar-pop img {
-  position: absolute; max-width: none; width: 221px; height: 124px; left: -125px; top: -38px;
+  position: absolute; max-width: none; width: 175px; height: 98px; left: -94px; top: -24px;
   transition: width var(--ease), height var(--ease), left var(--ease), top var(--ease);
 }
 .avatar:hover .avatar-pop, .avatar:focus .avatar-pop {
