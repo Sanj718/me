@@ -54,29 +54,45 @@ const frontPines = [
 
 // Barely-there landscape behind the page, bottom-right, large screens only.
 export function Scenery() {
+  const gutter = { width: 'calc((100vw - 42rem) / 2)' }
   return (
-    <div aria-hidden className="scenery pointer-events-none fixed bottom-0 right-0 -z-10 hidden h-[75vh] lg:block"
+    <>
+      <div aria-hidden className="sky pointer-events-none fixed right-0 top-0 -z-10 hidden h-[60vh] lg:block" style={gutter}>
+        <svg viewBox="0 0 600 450" preserveAspectRatio="xMidYMin slice" className="h-full w-full">
+          <defs>
+            <linearGradient id="aurora" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stopColor="var(--color-accent)" stopOpacity="0" />
+              <stop offset="0.4" stopColor="var(--color-accent)" stopOpacity="0.5" />
+              <stop offset="0.7" stopColor="#2dd4bf" stopOpacity="0.45" />
+              <stop offset="1" stopColor="#2dd4bf" stopOpacity="0" />
+            </linearGradient>
+            <filter id="blur" x="-20%" y="-50%" width="140%" height="200%">
+              <feGaussianBlur stdDeviation="14" />
+            </filter>
+            <radialGradient id="sun">
+              <stop offset="0.45" stopColor="#ffe9a8" />
+              <stop offset="1" stopColor="#ffe9a8" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <g className="aurora" filter="url(#blur)">
+            <path d="M-40 200 C80 120 200 250 320 160 S520 90 640 170 L640 230 C520 160 420 260 300 220 S80 200 -40 270Z" fill="url(#aurora)" />
+            <path d="M-40 130 C100 80 220 170 360 110 S540 60 640 110 L640 150 C540 110 400 180 280 150 S60 140 -40 180Z" fill="url(#aurora)" opacity="0.6" />
+          </g>
+          <circle className="sun" cx="360" cy="160" r="70" fill="url(#sun)" />
+        </svg>
+      </div>
+      <div aria-hidden className="scenery pointer-events-none fixed bottom-0 right-0 -z-10 hidden h-[75vh] lg:block"
       // Only the empty gutter right of the centered 42rem column, so it never sits under text.
-      style={{ width: 'calc((100vw - 42rem) / 2)' }}
+      style={gutter}
     >
       <svg viewBox="0 380 600 520" preserveAspectRatio="xMaxYMax slice" className="h-full w-full">
-        <defs>
-          <linearGradient id="aurora" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="var(--color-accent)" stopOpacity="0" />
-            <stop offset="0.5" stopColor="var(--color-accent)" stopOpacity="1" />
-            <stop offset="1" stopColor="#2dd4bf" stopOpacity="0" />
-          </linearGradient>
-          <filter id="blur" x="-20%" y="-50%" width="140%" height="200%">
-            <feGaussianBlur stdDeviation="16" />
-          </filter>
-        </defs>
-        <path className="aurora" filter="url(#blur)" fill="url(#aurora)" d="M40 470 C160 400 280 500 400 430 S560 400 640 440 L640 480 C540 450 420 520 300 490 S120 470 40 510Z" />
         <path d={ridge(FAR)} className="fill-fg" opacity="0.025" />
         <path d={caps(FAR, [3, 5, 7, 9])} className="fill-fg" opacity="0.035" />
         <path d={ridge(MID)} className="fill-fg" opacity="0.035" />
         <path d={backPines.map((p) => pine(p.x, 694, p.h)).join('') + 'M0 690H600V900H0Z'} className="fill-fg" opacity="0.045" />
         <path d={frontPines.map((p) => pine(p.x, 905, p.h)).join('')} className="fill-fg" opacity="0.055" />
       </svg>
-    </div>
+      </div>
+    </>
   )
 }

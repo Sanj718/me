@@ -68,11 +68,19 @@ body {
   mask-image: linear-gradient(to right, transparent, #000 55%), linear-gradient(to bottom, transparent, #000 40%);
   mask-composite: intersect;
 }
-.aurora { opacity: 0.1; animation: aurora 24s ease-in-out infinite alternate; }
+.sky {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 55%), linear-gradient(to top, transparent, #000 45%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 55%), linear-gradient(to top, transparent, #000 45%);
+  mask-composite: intersect;
+}
+.sun { display: none; }
+:root[data-theme="light"] .sun { display: inline; }
 :root[data-theme="light"] .aurora { display: none; }
+.aurora { animation: aurora 14s ease-in-out infinite alternate; transform-origin: center; }
 @keyframes aurora {
-  from { opacity: 0.06; transform: translateX(-10px); }
-  to { opacity: 0.14; transform: translateX(10px); }
+  from { opacity: 0.45; transform: translateX(-12px) skewX(-4deg); }
+  to { opacity: 0.85; transform: translateX(12px) skewX(4deg); }
 }
 @media (prefers-reduced-motion: reduce) {
   .aurora { animation: none; }
