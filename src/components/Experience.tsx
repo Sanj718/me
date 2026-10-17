@@ -38,7 +38,7 @@ function CompanyRow({ c }: { c: Company }) {
       </div>
       <div className="shrink-0 text-right font-mono text-xs text-mute">
         <p>
-          {year(first.start)} — {latest.end ? year(latest.end) : 'Now'}
+          {year(first.start)} – {latest.end ? year(latest.end) : 'Now'}
         </p>
         <p className="mt-0.5">{duration(first.start, latest.end)}</p>
       </div>

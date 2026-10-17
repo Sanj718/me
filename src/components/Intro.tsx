@@ -62,9 +62,9 @@ export function Intro() {
           time on the details.
         </p>
         <p>
-          Away from the keyboard I’m a husband and a dad, and my favorite time is <I icon={Users}>time with my family</I>.
+          Away from the keyboard, I’m a husband and a dad, and I love spending <I icon={Users}>time with my family</I>.
           I’m happiest outdoors: <I icon={Mountain}>hiking</I>, <I icon={TreePine}>forests</I>, anywhere with trees and
-          fresh air <Heart aria-hidden className="inline-block h-[0.9em] w-[0.9em] align-[-0.1em] text-mute" />
+          fresh air. <Heart aria-hidden className="inline-block h-[0.9em] w-[0.9em] align-[-0.1em] text-mute" />
         </p>
       </div>
     </header>
