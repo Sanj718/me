@@ -105,7 +105,7 @@ export function Terminal() {
 
   return (
     <div
-      className="overflow-hidden rounded-xl border border-line bg-panel/80 font-mono text-sm shadow-2xl shadow-black/15 backdrop-blur"
+      className="overflow-hidden rounded-xl border border-line bg-panel font-mono text-[13px]"
       onClick={() => input.current?.focus()}
     >
       <div className="flex items-center gap-2 border-b border-line px-4 py-2.5">
@@ -114,7 +114,7 @@ export function Terminal() {
         <span className="h-2.5 w-2.5 rounded-full bg-line" />
         <span className="ml-2 text-xs text-mute">agent@sanjar ~ %</span>
       </div>
-      <div ref={body} className="h-56 overflow-y-auto px-4 py-3 leading-relaxed" aria-live="polite">
+      <div ref={body} className="h-40 overflow-y-auto px-4 py-3 leading-relaxed" aria-live="polite">
         {lines.map((l, i) => (
           <div key={i} className={l.kind === 'in' ? 'text-fg' : 'whitespace-pre-wrap text-mute'}>
             {l.kind === 'in' && <span className="mr-2 text-accent">$</span>}

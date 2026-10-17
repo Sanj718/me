@@ -1,37 +1,26 @@
 import { roles } from '../site'
 import { Mark } from './Marks'
-import { Reveal } from './Reveal'
+import { Section } from './Section'
 
 export function Experience() {
   return (
-    <section className="mx-auto max-w-5xl px-5 py-20" aria-labelledby="where">
-      <Reveal>
-        <h2 id="where" className="font-mono text-xs uppercase tracking-[0.2em] text-mute">
-          Where I’ve been
-        </h2>
-      </Reveal>
-      <ol className="mt-8 border-l border-line">
-        {roles.map((r, i) => (
-          <li key={r.org + r.title} className="relative pb-10 pl-8 last:pb-0">
-            <span className="absolute -left-[5px] top-3 h-2.5 w-2.5 rounded-full bg-line ring-4 ring-ink" />
-            <Reveal delay={i * 100}>
-              <div className="group flex gap-4 rounded-xl border border-transparent p-3 transition hover:border-line hover:bg-panel">
-                <div className="shrink-0 transition group-hover:-rotate-3 group-hover:scale-105">
-                  <Mark kind={r.mark} />
-                </div>
-                <div>
-                  <div className="flex flex-wrap items-baseline gap-x-3">
-                    <h3 className="font-medium">{r.org}</h3>
-                    <span className="font-mono text-xs text-accent">{r.when}</span>
-                  </div>
-                  <p className="text-sm text-mute">{r.title}</p>
-                  <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-fg/80">{r.note}</p>
-                </div>
+    <Section id="experience" title="Experience">
+      <ul className="-mx-3">
+        {roles.map((r) => (
+          <li key={r.title} className="flex gap-4 rounded-lg p-3 transition hover:bg-panel">
+            <Mark kind={r.mark} />
+            <div className="min-w-0 flex-1">
+              <div className="flex items-baseline justify-between gap-3">
+                <p className="font-medium">
+                  {r.title} <span className="text-mute">· {r.org}</span>
+                </p>
+                <span className="shrink-0 font-mono text-xs text-mute">{r.when}</span>
               </div>
-            </Reveal>
+              <p className="mt-1 text-sm leading-relaxed text-mute">{r.note}</p>
+            </div>
           </li>
         ))}
-      </ol>
-    </section>
+      </ul>
+    </Section>
   )
 }

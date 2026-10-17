@@ -1,5 +1,8 @@
 export const site = {
   name: 'Sanjar Sobirjonov',
+  role: 'Frontend engineer · Shopify Polaris',
+  location: 'Ottawa, Canada',
+  avatar: 'https://github.com/Sanj718.png?size=160',
   links: {
     github: 'https://github.com/Sanj718',
     x: 'https://x.com/sobsanjar',
@@ -17,22 +20,45 @@ export type Role = {
   note: string
 }
 
-// Newest first. To add an earlier chapter: add an object (mark can be 'shopify' or 'polaris';
-// extend Marks.tsx for a new monogram).
+// Newest first.
 export const roles: Role[] = [
   {
     mark: 'polaris',
-    org: 'Shopify · Polaris',
-    title: 'Design systems engineer',
+    org: 'Shopify',
+    title: 'Polaris design system',
     when: 'Now',
-    note: 'Building the system Shopify’s UI is made of: tokens, components, and the kind of API nobody has to think about.',
+    note: 'Tokens, components and the kind of API nobody has to think about.',
   },
   {
     mark: 'shopify',
     org: 'Shopify',
     title: 'Enterprise Solutions Engineering',
     when: 'Before',
-    note: 'The messy, high-stakes end of the platform. Learned how real requirements bend clean abstractions, which turns out to be great design-system training.',
+    note: 'Where real requirements bend clean abstractions. Great training for design systems.',
+  },
+]
+
+export type Project = { name: string; href: string; note: string; meta: string }
+
+// Public repos only: private ones would 404 for visitors.
+export const projects: Project[] = [
+  {
+    name: 'Claude Uz Slang',
+    href: 'https://github.com/Sanj718/claude-uz-slang',
+    note: 'A Claude Code output style that turns your agent into a senior dev from the streets of Tashkent.',
+    meta: 'Claude Code · Shell',
+  },
+  {
+    name: 'Shopify MiniCart JS',
+    href: 'https://sanj718.github.io/Shopify-MinicartJS/',
+    note: 'Drop-in slide-out mini cart for Shopify themes. Quantity indicator, custom endpoints, fully customizable.',
+    meta: 'JavaScript · ★ 3',
+  },
+  {
+    name: 'GLSL sketches',
+    href: 'https://github.com/Sanj718/my-glsl',
+    note: 'A playground of shader experiments. My previous site, kept for the pixels.',
+    meta: 'GLSL',
   },
 ]
 
