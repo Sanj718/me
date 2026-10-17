@@ -25,9 +25,9 @@ export function Intro() {
       </div>
       <div className="mt-8 space-y-4 text-[17px] leading-relaxed text-fg/85">
         <p>
-          Hi, I’m Sanjar. I’m a frontend engineer on Shopify’s <span className="text-fg">Polaris</span> team, working on
-          the design system that Shopify’s UI is built from. Before that I was in Enterprise Solutions Engineering at
-          Shopify.
+          Hi, I’m Sanjar. I’m a senior engineer on Shopify’s <span className="text-fg">Polaris</span> team, working on
+          the design system that Shopify’s UI is built from. Before that I was a Solutions Engineer at Shopify, and
+          before that I led development at Avex E-commerce.
         </p>
         <p>
           Lately I’m deep into <span className="text-accent">agentic development</span>: local models, CLI tooling, and

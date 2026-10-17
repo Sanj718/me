@@ -2,6 +2,7 @@ import { projects } from '../site'
 import { Section } from './Section'
 
 export function Projects() {
+  if (projects.length === 0) return null
   return (
     <Section id="made" title="Things I’ve made">
       <ul className="-mx-3">

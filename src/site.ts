@@ -1,66 +1,111 @@
 export const site = {
   name: 'Sanjar Sobirjonov',
-  role: 'Frontend engineer · Shopify Polaris',
+  role: 'Senior Engineer · Shopify Polaris',
   location: 'Ottawa, Canada',
   avatar: 'https://github.com/Sanj718.png?size=160',
   links: {
     github: 'https://github.com/Sanj718',
     x: 'https://x.com/sobsanjar',
     email: 'mailto:ssobirjonov@gmail.com',
-    // Add your LinkedIn URL here and it appears in the footer automatically.
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/sanjarsob/',
   },
 }
 
-export type Role = {
-  mark: 'polaris' | 'shopify'
-  org: string
+export type Position = {
   title: string
-  when: string
-  note: string
+  start: string // 'YYYY-MM'
+  end?: string // omitted = present
+  location?: string
+  summary?: string
+  bullets?: string[]
 }
 
-// Newest first.
-export const roles: Role[] = [
+export type Company = {
+  name: string
+  logo: 'shopify' | 'avex' | 'sab' | 'bigd'
+  type: string
+  location?: string
+  positions: Position[] // newest first
+}
+
+// Source: LinkedIn experience, newest first.
+export const experience: Company[] = [
   {
-    mark: 'polaris',
-    org: 'Shopify',
-    title: 'Polaris design system',
-    when: 'Now',
-    note: 'Tokens, components and the kind of API nobody has to think about.',
+    name: 'Shopify',
+    logo: 'shopify',
+    type: 'Full-time',
+    location: 'Ottawa, Ontario, Canada · Remote',
+    positions: [
+      { title: 'Senior Engineer – Polaris', start: '2026-09' },
+      { title: 'Senior Solutions Engineer', start: '2024-10', end: '2026-09' },
+    ],
   },
   {
-    mark: 'shopify',
-    org: 'Shopify',
-    title: 'Enterprise Solutions Engineering',
-    when: 'Before',
-    note: 'Where real requirements bend clean abstractions. Great training for design systems.',
+    name: 'Avex E-commerce',
+    logo: 'avex',
+    type: 'Full-time',
+    positions: [
+      { title: 'Head of Development Department', start: '2022-01', end: '2024-10', location: 'New York, United States' },
+      {
+        title: 'Senior Frontend/Shopify Developer',
+        start: '2019-12',
+        end: '2021-12',
+        location: 'New York City Metropolitan Area',
+        summary:
+          'Frontend web developer responsible for end-to-end web app development, React (Next.js or Gatsby) for frontend projects, and Contentful for content management.',
+        bullets: [
+          'Full JAMstack builds with Next.js/Gatsby and Contentful CMS',
+          'Headless commerce with Shopify + Shogun + React',
+          'Shopify theme development and WordPress projects',
+          'Shopify app development',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'SAB Games',
+    logo: 'sab',
+    type: 'Full-time',
+    positions: [
+      {
+        title: 'Full Stack Developer',
+        start: '2017-12',
+        end: '2019-06',
+        location: 'Tashkent',
+        summary: 'End-to-end web app development: Yii2 PHP backend, Vue and React frontends, PostgreSQL.',
+        bullets: [
+          'API, backend, frontend and admin panel for an e-commerce web app',
+          'Frontend work in Vue, Nuxt.js, React and Redux',
+          'Built a crawler that assembled a database of 20,000+ offers',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Big D Creative',
+    logo: 'bigd',
+    type: 'Full-time',
+    positions: [
+      {
+        title: 'Web Developer',
+        start: '2016-05',
+        end: '2017-11',
+        location: 'Dallas-Fort Worth Metroplex',
+        summary: 'Built reusable WordPress templates that doubled productivity, created an SEO plugin, and supported Drupal, Joomla and PHP projects.',
+        bullets: [
+          'Mobile-adaptive frontends in plain HTML/CSS/JS',
+          'Integrated frontends with WordPress CMS',
+          'Managed servers, domains and MySQL databases',
+        ],
+      },
+    ],
   },
 ]
 
 export type Project = { name: string; href: string; note: string; meta: string }
 
-// Public repos only: private ones would 404 for visitors.
-export const projects: Project[] = [
-  {
-    name: 'Claude Uz Slang',
-    href: 'https://github.com/Sanj718/claude-uz-slang',
-    note: 'A Claude Code output style that turns your agent into a senior dev from the streets of Tashkent.',
-    meta: 'Claude Code · Shell',
-  },
-  {
-    name: 'Shopify MiniCart JS',
-    href: 'https://sanj718.github.io/Shopify-MinicartJS/',
-    note: 'Drop-in slide-out mini cart for Shopify themes. Quantity indicator, custom endpoints, fully customizable.',
-    meta: 'JavaScript · ★ 3',
-  },
-  {
-    name: 'GLSL sketches',
-    href: 'https://github.com/Sanj718/my-glsl',
-    note: 'A playground of shader experiments. My previous site, kept for the pixels.',
-    meta: 'GLSL',
-  },
-]
+// Intentionally empty until real projects are provided; the section is hidden while empty.
+export const projects: Project[] = []
 
 export const thoughts = [
   'a component is a promise. the API is the contract, the pixels are the receipt.',
