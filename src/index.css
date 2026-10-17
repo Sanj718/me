@@ -100,5 +100,31 @@ body {
   .aurora, .aurora path, .sun { animation: none; }
 }
 
+/* Avatar: face crop in a circle that grows into the full photo on hover / focus (tap on touch). */
+.avatar {
+  --w: min(320px, calc(100vw - 2.5rem)); /* expanded width; height follows the 16:9 photo */
+  --ease: 500ms cubic-bezier(.2,.7,.2,1);
+  position: relative; width: 56px; height: 56px; flex-shrink: 0; border-radius: 28px;
+}
+.avatar:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+.avatar-pop {
+  position: absolute; left: 0; top: 0; z-index: 20; display: block; overflow: hidden;
+  width: 56px; height: 56px; border-radius: 28px; /* exactly half: a circle that animates smoothly to 14px */
+  border: 1px solid var(--color-line); background: var(--color-panel);
+  transition: width var(--ease), height var(--ease), border-radius var(--ease), box-shadow var(--ease);
+}
+.avatar-pop img {
+  position: absolute; max-width: none; width: 221px; height: 124px; left: -125px; top: -38px;
+  transition: width var(--ease), height var(--ease), left var(--ease), top var(--ease);
+}
+.avatar:hover .avatar-pop, .avatar:focus .avatar-pop {
+  width: var(--w); height: calc(var(--w) * 9 / 16); border-radius: 14px;
+  box-shadow: 0 24px 60px -12px rgb(0 0 0 / 0.45);
+}
+.avatar:hover .avatar-pop img, .avatar:focus .avatar-pop img { width: var(--w); height: calc(var(--w) * 9 / 16); left: 0; top: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .avatar-pop, .avatar-pop img { transition: none; }
+}
+
 /* Tailwind v4 leaves buttons with the default cursor. */
 button:not(:disabled):not([aria-disabled="true"]) { cursor: pointer; }

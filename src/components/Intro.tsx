@@ -1,4 +1,4 @@
-import { useState, type ComponentType, type ReactNode } from 'react'
+import { type ComponentType, type ReactNode } from 'react'
 import { Heart, Mountain, Sparkles, Terminal, TreePine, Users } from 'lucide-react'
 import { site } from '../site'
 
@@ -24,22 +24,15 @@ function I({ icon: Icon, children, accent }: { icon: IconType; children: ReactNo
 }
 
 export function Intro() {
-  const [avatarOk, setAvatarOk] = useState(true)
   return (
     <header>
       <div className="flex items-center gap-4">
-        {avatarOk ? (
-          <img
-            src={site.avatar}
-            alt=""
-            width={56}
-            height={56}
-            onError={() => setAvatarOk(false)}
-            className="h-14 w-14 rounded-full border border-line object-cover"
-          />
-        ) : (
-          <div className="grid h-14 w-14 place-items-center rounded-full border border-line bg-panel font-mono text-sm">SS</div>
-        )}
+        {/* Circle crop of the face; hover or tap smoothly expands to the full photo, floating over the page. */}
+        <button type="button" className="avatar" aria-label="Show full photo">
+          <span className="avatar-pop">
+            <img src={site.photo} alt="Sanjar and his kids wearing witch hats" width={960} height={540} decoding="async" />
+          </span>
+        </button>
         <div>
           <h1 className="text-lg font-semibold tracking-tight">{site.shortName}</h1>
           <p className="text-sm text-mute">{site.role}</p>

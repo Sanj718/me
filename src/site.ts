@@ -3,7 +3,8 @@ export const site = {
   shortName: 'Sanjar', // shown in the page heading
   role: 'Engineer · Shopify Polaris',
   location: 'Ottawa, Canada',
-  avatar: 'https://github.com/Sanj718.png?size=160',
+  // Relative path: served from public/, works on GitHub Pages and when opened from disk.
+  photo: './sanjar.jpg',
   links: {
     github: 'https://github.com/Sanj718',
     x: 'https://x.com/sobsanjar',
