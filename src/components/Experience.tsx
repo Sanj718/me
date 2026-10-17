@@ -111,7 +111,11 @@ export function Experience() {
         <ol
           ref={list}
           className="overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(.2,.7,.2,1)]"
-          style={{ maxHeight: open || collapsed === null ? full || undefined : collapsed }}
+          style={{
+            maxHeight: open || collapsed === null ? full || undefined : collapsed,
+            // Fade the cut-off entry with a mask (not an overlay) so whatever is behind stays visible.
+            maskImage: open ? undefined : 'linear-gradient(to bottom, #000 calc(100% - 6rem), transparent)',
+          }}
         >
           {experience.map((c, i) => (
             <li
@@ -124,9 +128,6 @@ export function Experience() {
             </li>
           ))}
         </ol>
-        {!open && (
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink to-transparent" />
-        )}
       </div>
       {hidden > 0 && (
         <button

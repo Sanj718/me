@@ -61,63 +61,19 @@ body {
   .caret, .pulse { animation: none; }
 }
 
-/* Scenery (right-hand panel) */
-:root {
-  --sky-top: #04060c;
-  --sky-bottom: #0e1c27;
-  --far: #1b2a36;
-  --snow: #b9c8d6;
-  --mid: #13212c;
-  --lake: #0f202b;
-  --forest-back: #0b1915;
-  --forest-front: #06100c;
+/* Scenery: faint silhouette, fades into the page on the left and top */
+.scenery {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 55%), linear-gradient(to bottom, transparent, #000 40%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 55%), linear-gradient(to bottom, transparent, #000 40%);
+  mask-composite: intersect;
 }
-:root[data-theme="light"] {
-  --sky-top: #bfdcf0;
-  --sky-bottom: #eef6f9;
-  --far: #a7bccb;
-  --snow: #ffffff;
-  --mid: #86a1b2;
-  --lake: #a9cadb;
-  --forest-back: #4b7a5c;
-  --forest-front: #2b5340;
-}
-.scenery { mask-image: linear-gradient(to right, transparent, #000 18%); }
-.scenery .day { display: none; }
-:root[data-theme="light"] .scenery .day { display: inline; }
-:root[data-theme="light"] .scenery .night { display: none; }
-
-.star { fill: #fff; animation: twinkle 4s ease-in-out infinite; }
-@keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: .9; } }
-
-.aurora { animation: aurora 12s ease-in-out infinite alternate; transform-origin: center; }
+.aurora { opacity: 0.1; animation: aurora 24s ease-in-out infinite alternate; }
+:root[data-theme="light"] .aurora { display: none; }
 @keyframes aurora {
-  from { opacity: .55; transform: translateX(-12px) skewX(-4deg); }
-  to { opacity: 1; transform: translateX(12px) skewX(4deg); }
+  from { opacity: 0.06; transform: translateX(-10px); }
+  to { opacity: 0.14; transform: translateX(10px); }
 }
-
-.cloud { animation: drift 60s linear infinite; }
-.cloud-2 { animation-duration: 85s; animation-delay: -30s; }
-@keyframes drift { from { transform: translateX(-160px); } to { transform: translateX(460px); } }
-
-.ripples { animation: ripple 6s ease-in-out infinite alternate; }
-@keyframes ripple { to { transform: translateX(14px); opacity: .5; } }
-
-.sway { animation: sway 7s ease-in-out infinite alternate; }
-@keyframes sway { from { transform: rotate(-0.8deg); } to { transform: rotate(0.8deg); } }
-
-.leaf { position: absolute; top: -5%; animation: fall linear infinite; }
-.leaf-spin { animation: spin ease-in-out infinite alternate; }
-@keyframes fall {
-  0% { top: -5%; transform: translateX(0); opacity: 0; }
-  10% { opacity: .95; }
-  50% { transform: translateX(40px); }
-  90% { opacity: .95; }
-  100% { top: 102%; transform: translateX(-20px); opacity: 0; }
-}
-@keyframes spin { from { transform: rotate(-40deg); } to { transform: rotate(220deg); } }
-
 @media (prefers-reduced-motion: reduce) {
-  .star, .aurora, .cloud, .ripples, .sway, .leaf, .leaf-spin { animation: none; }
-  .leaf { display: none; }
+  .aurora { animation: none; }
 }
