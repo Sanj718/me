@@ -8,7 +8,7 @@ const real = (kind: string) => Object.entries(files).find(([path]) => path.inclu
 export function Logo({ kind, name }: { kind: Company['logo']; name: string }) {
   const box = 'h-12 w-12 shrink-0 rounded-md'
   const src = real(kind)
-  if (src) return <img src={src} alt={name} width={48} height={48} className={`${box} object-cover`} />
+  if (src) return <img src={src} alt={name} width={48} height={48} className={`${box} border border-line object-cover`} />
   switch (kind) {
     case 'shopify':
       return (
