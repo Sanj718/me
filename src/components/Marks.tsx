@@ -1,8 +1,14 @@
 import { type Company } from '../site'
 
-// Simplified inline marks so they never break on any base path.
+// Real logos live in src/assets/logos/<kind>.jpg and get inlined into the build.
+// Any missing file falls back to the drawn mark below.
+const files = import.meta.glob<string>('../assets/logos/*.{jpg,png,svg}', { eager: true, query: '?url', import: 'default' })
+const real = (kind: string) => Object.entries(files).find(([path]) => path.includes(`/${kind}.`))?.[1]
+
 export function Logo({ kind, name }: { kind: Company['logo']; name: string }) {
   const box = 'h-12 w-12 shrink-0 rounded-md'
+  const src = real(kind)
+  if (src) return <img src={src} alt={name} width={48} height={48} className={`${box} object-cover`} />
   switch (kind) {
     case 'shopify':
       return (
