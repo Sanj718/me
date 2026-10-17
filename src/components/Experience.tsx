@@ -15,8 +15,25 @@ function CompanyRow({ c }: { c: Company }) {
       <Logo kind={c.logo} name={c.name} />
       <div className="min-w-0 flex-1">
         <h3 className="truncate font-medium">{c.name}</h3>
-        <p className="truncate text-sm text-mute">{latest.title}</p>
-        {c.positions[1] && <p className="truncate text-xs text-mute/70">Previously {c.positions[1].title}</p>}
+        {c.positions.length === 1 ? (
+          <p className="truncate text-sm text-mute">{latest.title}</p>
+        ) : (
+          // Latest role on top, the one before it underneath, joined by a small timeline.
+          <ol className="relative">
+            {/* Line runs from the first dot's center (10px) to the second's (8px from bottom). */}
+            <span className="absolute bottom-[8px] left-[2.5px] top-[10px] w-px bg-line" />
+            {c.positions.slice(0, 2).map((p, i) => (
+              <li key={p.title} className="relative pl-4">
+                <span
+                  className={`absolute left-0 h-1.5 w-1.5 rounded-full ${
+                    i === 0 ? `top-[7px] ${p.end ? 'bg-mute' : 'bg-accent'}` : 'top-[5px] bg-mute/50'
+                  }`}
+                />
+                <p className={i === 0 ? 'truncate text-sm leading-5 text-mute' : 'truncate text-xs leading-4 text-mute/70'}>{p.title}</p>
+              </li>
+            ))}
+          </ol>
+        )}
       </div>
       <div className="shrink-0 text-right font-mono text-xs text-mute">
         <p>
