@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark light" />
-    <meta name="theme-color" content="#0a0a0b" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0a0b" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9" />
     <title>Sanjar — Engineer, Shopify Polaris</title>
     <meta name="description" content="Sanjar Sobirjonov is an engineer on Shopify's Polaris design system team in Ottawa, Canada, focused on frontend craft and agentic development." />
     <meta name="author" content="Sanjar Sobirjonov" />
@@ -35,9 +36,11 @@
     </script>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0a0b'/%3E%3Crect x='8' y='8' width='7' height='7' rx='2' fill='%23a3e635'/%3E%3Crect x='17' y='8' width='7' height='7' rx='2' fill='%23ededee'/%3E%3Crect x='8' y='17' width='7' height='7' rx='2' fill='%23ededee'/%3E%3Crect x='17' y='17' width='7' height='7' rx='2' fill='%23ededee'/%3E%3C/svg%3E" />
     <script>
-      try {
-        if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'
-      } catch (e) {}
+      // Before first paint: a saved choice wins, otherwise follow the system theme.
+      var saved = null
+      try { saved = localStorage.getItem('theme') } catch (e) {}
+      var theme = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+      if (theme === 'light') document.documentElement.dataset.theme = 'light'
     </script>
     <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
   </head>

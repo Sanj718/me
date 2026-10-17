@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 type Theme = 'dark' | 'light'
 
@@ -7,11 +7,31 @@ export function ThemeToggle() {
     typeof document !== 'undefined' && document.documentElement.dataset.theme === 'light' ? 'light' : 'dark',
   )
 
-  const toggle = () => {
-    const next: Theme = theme === 'dark' ? 'light' : 'dark'
+  const apply = (next: Theme) => {
     setTheme(next)
     if (next === 'light') document.documentElement.dataset.theme = 'light'
     else delete document.documentElement.dataset.theme
+  }
+
+  // Follow system theme changes live, until the visitor picks a theme with the toggle.
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-color-scheme: light)')
+    const onChange = () => {
+      let saved = null
+      try {
+        saved = localStorage.getItem('theme')
+      } catch {
+        /* storage unavailable */
+      }
+      if (!saved) apply(mq.matches ? 'light' : 'dark')
+    }
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
+  const toggle = () => {
+    const next: Theme = theme === 'dark' ? 'light' : 'dark'
+    apply(next)
     try {
       localStorage.setItem('theme', next)
     } catch {
