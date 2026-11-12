@@ -1,5 +1,5 @@
 // Offline support for /bc/ only. Opens instantly from cache, refreshes in the background.
-const CACHE = 'bc-20261111215908';
+const CACHE = 'bc-20261111220934';
 const CORE = ['./', './trip.enc', './manifest.webmanifest', './apple-touch-icon.png', './icon-192.png', './icon-512.png', './icon.svg'];
 
 self.addEventListener('install', e => {
