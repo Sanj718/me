@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Drive">
+<meta name="theme-color" content="#173a43">
+<title>Cross-country drive</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: linear-gradient(160deg, #173a43, #2b6874);
+    color: #fff8e9; font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    display: grid; place-items: center; padding: max(24px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
+  }
+  main { width: 100%; max-width: 340px; text-align: center; }
+  main[hidden] { display: none; }
+  img { width: 88px; height: 88px; border-radius: 22px; box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+  h1 { font-size: 22px; margin: 18px 0 4px; font-weight: 650; }
+  p { margin: 0 0 22px; color: #d8e3df; font-size: 15px; }
+  input {
+    width: 100%; font-size: 17px; padding: 14px 16px; border-radius: 14px; border: 1px solid rgba(255,255,255,.25);
+    background: rgba(255,255,255,.1); color: #fff; outline: none;
+  }
+  input:focus { border-color: #efb95f; }
+  button {
+    width: 100%; margin-top: 12px; font-size: 17px; font-weight: 600; padding: 14px; border: 0; border-radius: 14px;
+    background: #efb95f; color: #173a43; cursor: pointer;
+  }
+  button[disabled] { opacity: .6; }
+  .err { color: #ffb4a8; min-height: 1.5em; margin: 12px 0 0; }
+  .busy { color: #d8e3df; }
+</style>
+</head>
+<body>
+<main id="lock" hidden>
+  <img src="apple-touch-icon.png" alt="">
+  <h1>Cross-country drive</h1>
+  <p>Rockland → Nanaimo</p>
+  <form id="f" autocomplete="on">
+    <input id="pw" type="password" name="password" autocomplete="current-password" placeholder="Password" required>
+    <button id="go" type="submit">Unlock</button>
+  </form>
+  <p class="err" id="err" role="alert"></p>
+</main>
+<main id="wait"><p class="busy">Opening…</p></main>
+<script>
+(async function () {
+  const ITER = 600000, STORE = 'bc-key';
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js', {scope: './'}).catch(() => {});
+  if (location.hash === '#lock') { localStorage.removeItem(STORE); history.replaceState(null, '', location.pathname); }
+
+  const hex = b => Array.from(b, x => x.toString(16).padStart(2, '0')).join('');
+  const unhex = h => new Uint8Array(h.match(/../g).map(x => parseInt(x, 16)));
+  let data;
+  try { data = new Uint8Array(await (await fetch('trip.enc')).arrayBuffer()); }
+  catch (e) { document.getElementById('wait').innerHTML = '<p class="err">Could not load the guide. Check your connection and try again.</p>'; return; }
+  const salt = data.slice(0, 16), iv = data.slice(16, 32), body = data.slice(32);
+
+  async function open(keyBytes) {
+    const key = await crypto.subtle.importKey('raw', keyBytes, 'AES-CBC', false, ['decrypt']);
+    const text = new TextDecoder().decode(await crypto.subtle.decrypt({name: 'AES-CBC', iv}, key, body));
+    if (!text.startsWith('BCOK\n')) throw new Error('bad');
+    document.open(); document.write(text.slice(5)); document.close();
+  }
+
+  const saved = localStorage.getItem(STORE);
+  if (saved && saved.startsWith(hex(salt) + ':')) {
+    try { await open(unhex(saved.split(':')[1])); return; } catch (e) { localStorage.removeItem(STORE); }
+  }
+
+  document.getElementById('wait').hidden = true;
+  document.getElementById('lock').hidden = false;
+  const f = document.getElementById('f'), pw = document.getElementById('pw'), go = document.getElementById('go'), err = document.getElementById('err');
+  pw.focus();
+  f.addEventListener('submit', async e => {
+    e.preventDefault();
+    go.disabled = true; go.textContent = 'Unlocking…'; err.textContent = '';
+    try {
+      const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw.value.trim()), 'PBKDF2', false, ['deriveBits']);
+      const bits = new Uint8Array(await crypto.subtle.deriveBits({name: 'PBKDF2', hash: 'SHA-256', salt, iterations: ITER}, base, 256));
+      localStorage.setItem(STORE, hex(salt) + ':' + hex(bits));
+      await open(bits);
+    } catch (e2) {
+      localStorage.removeItem(STORE);
+      go.disabled = false; go.textContent = 'Unlock';
+      err.textContent = 'That password didn’t work. Try again.';
+      pw.select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
