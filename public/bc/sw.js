@@ -1,7 +1,7 @@
 // Offline support for /bc/ only.
 // Online: always fetch the newest files first (bypassing the 10-minute GitHub cache); if the network
 // is slow or missing, fall back to the saved copy after a few seconds. Offline: the saved copy.
-const CACHE = 'bc-20261111221307';
+const CACHE = 'bc-20261112184308';
 const CORE = ['./', './trip.enc', './manifest.webmanifest', './apple-touch-icon.png', './icon-192.png', './icon-512.png', './icon.svg'];
 
 self.addEventListener('install', e => {
